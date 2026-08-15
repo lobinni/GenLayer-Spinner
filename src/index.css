@@ -1,0 +1,230 @@
+@import "tailwindcss";
+
+:root {
+  --gl-cobalt: #110FFF;
+  --gl-void: #070707;
+  --gl-ceramic: #F8F8FA;
+  --gl-cobalt-rgb: 17, 15, 255;
+}
+
+* { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+html { scroll-behavior: smooth; }
+
+
+/* ═══════════════════════════════════════════════════════
+   THE ADJUDICATOR — Primary GenLayer Spinner
+
+   Anatomy:
+   ① Hexagonal frame   — the network boundary (web3 DNA)
+   ② Three G-arcs      — the layered protocol ("G" + layers)
+   ③ Validator nodes    — dots on each ring (AI validators)
+   ④ Center pulse       — the consensus / adjudication moment
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Hexagonal frame: slow counter-rotation + dash flow ── */
+@keyframes gl-hex-rotate {
+  to { transform: rotate(-360deg); }
+}
+@keyframes gl-hex-dash {
+  to { stroke-dashoffset: -46; }
+}
+
+.gl-hex-frame {
+  animation:
+    gl-hex-rotate 24s linear infinite,
+    gl-hex-dash 4s linear infinite;
+  transform-origin: center;
+}
+
+/* ── G-Arc layers: independent rotation + breathe ── */
+@keyframes gl-arc-cw  { to { transform: rotate(360deg); } }
+@keyframes gl-arc-ccw { to { transform: rotate(-360deg); } }
+@keyframes gl-arc-breathe {
+  0%, 100% { opacity: var(--rest); }
+  50%      { opacity: var(--peak); }
+}
+
+.gl-arc-outer {
+  --rest: 0.85; --peak: 1;
+  animation:
+    gl-arc-cw 3s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+    gl-arc-breathe 3s ease-in-out infinite;
+  transform-origin: center;
+}
+.gl-arc-middle {
+  --rest: 0.45; --peak: 0.8;
+  animation:
+    gl-arc-ccw 2s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+    gl-arc-breathe 2s ease-in-out 0.3s infinite;
+  transform-origin: center;
+}
+.gl-arc-inner {
+  --rest: 0.2; --peak: 0.55;
+  animation:
+    gl-arc-cw 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite,
+    gl-arc-breathe 1.2s ease-in-out 0.6s infinite;
+  transform-origin: center;
+}
+
+/* ── Validator nodes: orbiting at their own speeds ── */
+@keyframes gl-node-orbit-0   { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
+@keyframes gl-node-orbit-0r  { from { transform: rotate(0deg);   } to { transform: rotate(-360deg); } }
+@keyframes gl-node-orbit-120 { from { transform: rotate(120deg); } to { transform: rotate(480deg);  } }
+
+.gl-node-outer {
+  animation: gl-node-orbit-0 5s linear infinite;
+  transform-origin: 25px 25px;
+}
+.gl-node-middle {
+  animation: gl-node-orbit-120 3.5s linear infinite;
+  transform-origin: 25px 25px;
+}
+.gl-node-inner {
+  animation: gl-node-orbit-0r 2.2s linear infinite;
+  transform-origin: 25px 25px;
+}
+
+/* Node glow: all flash together = consensus moment */
+@keyframes gl-node-flash {
+  0%, 80%, 100% { opacity: 0.55; r: 1.6; }
+  88%, 93%      { opacity: 1;    r: 2.4; }
+}
+.gl-node-dot {
+  animation: gl-node-flash 5s ease-in-out infinite;
+}
+
+/* ── Center consensus pulse ── */
+@keyframes gl-center-pulse {
+  0%, 80%, 100% { opacity: 0; transform: scale(0.2); }
+  88%           { opacity: 0.5; transform: scale(1);  }
+  96%           { opacity: 0; transform: scale(1.6);   }
+}
+.gl-center-pulse {
+  animation: gl-center-pulse 5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Center hex dot — always visible anchor */
+@keyframes gl-center-hex {
+  0%, 80%, 100% { opacity: 0.15; }
+  88%, 93%      { opacity: 0.6; }
+}
+.gl-center-hex {
+  animation: gl-center-hex 5s ease-in-out infinite;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   CONSENSUS VARIANT — Breathing arcs + adjudication dot
+   Three arcs expand → converge → consensus reached
+   ═══════════════════════════════════════════════════════ */
+@keyframes gl-cons-dash {
+  0%, 100% { stroke-dasharray: 10.47 31.42; stroke-dashoffset: 0; }
+  50%      { stroke-dasharray: 38 3.89; stroke-dashoffset: -15; }
+}
+@keyframes gl-cons-rotate {
+  to { transform: rotate(360deg); }
+}
+@keyframes gl-cons-dot {
+  0%, 100% { opacity: 0.15; transform: scale(0.8); }
+  50%      { opacity: 0.6;  transform: scale(1.4); }
+}
+
+.gl-cons-ring {
+  animation:
+    gl-cons-dash 2.4s ease-in-out infinite,
+    gl-cons-rotate 3.6s linear infinite;
+  transform-origin: center;
+}
+.gl-cons-dot {
+  animation: gl-cons-dot 2.4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   NODES VARIANT — Pure validator network
+   Multiple dots orbiting at different speeds.
+   Cluster = quorum. Spread = deliberation.
+   ═══════════════════════════════════════════════════════ */
+@keyframes gl-nd-0   { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
+@keyframes gl-nd-72  { from { transform: rotate(72deg);  } to { transform: rotate(432deg);  } }
+@keyframes gl-nd-144 { from { transform: rotate(144deg); } to { transform: rotate(504deg);  } }
+@keyframes gl-nd-216 { from { transform: rotate(216deg); } to { transform: rotate(576deg);  } }
+@keyframes gl-nd-288 { from { transform: rotate(288deg); } to { transform: rotate(648deg);  } }
+
+.gl-nd-1 { animation: gl-nd-0   2.4s cubic-bezier(0.4,0,0.2,1) infinite; transform-origin: 25px 25px; }
+.gl-nd-2 { animation: gl-nd-72  2.0s cubic-bezier(0.4,0,0.2,1) infinite; transform-origin: 25px 25px; }
+.gl-nd-3 { animation: gl-nd-144 2.8s cubic-bezier(0.4,0,0.2,1) infinite; transform-origin: 25px 25px; }
+.gl-nd-4 { animation: gl-nd-216 1.7s cubic-bezier(0.4,0,0.2,1) infinite; transform-origin: 25px 25px; }
+.gl-nd-5 { animation: gl-nd-288 3.2s cubic-bezier(0.4,0,0.2,1) infinite; transform-origin: 25px 25px; }
+
+/* Node trail — subtle comet tail using filter */
+.gl-nd-dot {
+  filter: drop-shadow(2px 0 3px rgba(var(--gl-cobalt-rgb), 0.35));
+}
+
+/* Center hex for nodes variant */
+@keyframes gl-nd-center {
+  0%, 100% { opacity: 0.2; }
+  50%      { opacity: 0.5; }
+}
+.gl-nd-center {
+  animation: gl-nd-center 3s ease-in-out infinite;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   GLOW — Kinetic Cobalt halo for hero moments
+   ═══════════════════════════════════════════════════════ */
+@keyframes gl-glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 3px rgba(var(--gl-cobalt-rgb), 0.2)); }
+  50%      { filter: drop-shadow(0 0 12px rgba(var(--gl-cobalt-rgb), 0.5)); }
+}
+.gl-glow {
+  animation: gl-glow-pulse 2.4s ease-in-out infinite;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 10s !important;
+    animation-timing-function: linear !important;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   SHOWCASE PAGE STYLES
+   ═══════════════════════════════════════════════════════ */
+.hex-grid-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l15 8.66v17.32L30 34.64 15 25.98V8.66z' fill='none' stroke='rgba(255,255,255,0.018)' stroke-width='0.5'/%3E%3C/svg%3E");
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(12px);
+}
+
+.text-cobalt-gradient {
+  background: linear-gradient(135deg, #110FFF 0%, #6b6bff 50%, #110FFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 2px; }
+
+.code-block {
+  background: #08080a;
+  border: 1px solid rgba(255,255,255,0.035);
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 11px;
+  line-height: 1.75;
+}

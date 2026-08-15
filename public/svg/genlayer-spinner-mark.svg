@@ -1,0 +1,49 @@
+<!-- GenLayer "The Adjudicator" Spinner
+     ❶ Hexagonal frame = web3 network boundary
+     ❷ Three G-arcs = "G" letterform + layered protocol
+     ❸ Validator nodes = AI models computing per layer
+     ❹ Center hex + pulse = adjudication / consensus
+     Color: Kinetic Cobalt #110FFF
+     
+     Usage: Drop into any HTML. No dependencies.
+     Sizes: Change width/height attributes (viewBox stays 0 0 50 50)
+-->
+<svg width="40" height="40" viewBox="0 0 50 50" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes hx  { to { transform: rotate(-360deg); } }
+    @keyframes hd  { to { stroke-dashoffset: -46; } }
+    @keyframes cw  { to { transform: rotate(360deg); } }
+    @keyframes ccw { to { transform: rotate(-360deg); } }
+    @keyframes br  { 0%,100%{opacity:var(--r)} 50%{opacity:var(--p)} }
+    @keyframes no  { from{transform:rotate(var(--s))} to{transform:rotate(calc(var(--s) + 360deg))} }
+    @keyframes nor { from{transform:rotate(var(--s))} to{transform:rotate(calc(var(--s) - 360deg))} }
+    @keyframes nf  { 0%,80%,100%{opacity:.55;r:1.6} 88%,93%{opacity:1;r:2.4} }
+    @keyframes cp  { 0%,80%,100%{opacity:0;transform:scale(.2)} 88%{opacity:.5;transform:scale(1)} 96%{opacity:0;transform:scale(1.6)} }
+    @keyframes ch  { 0%,80%,100%{opacity:.15} 88%,93%{opacity:.6} }
+    .hf{animation:hx 24s linear infinite,hd 4s linear infinite;transform-origin:center}
+    .ao{--r:.85;--p:1;animation:cw 3s cubic-bezier(.4,0,.2,1) infinite,br 3s ease-in-out infinite;transform-origin:center}
+    .am{--r:.45;--p:.8;animation:ccw 2s cubic-bezier(.4,0,.2,1) infinite,br 2s ease-in-out .3s infinite;transform-origin:center}
+    .ai{--r:.2;--p:.55;animation:cw 1.2s cubic-bezier(.4,0,.2,1) infinite,br 1.2s ease-in-out .6s infinite;transform-origin:center}
+    .no{--s:0deg;animation:no 5s linear infinite;transform-origin:25px 25px}
+    .nm{--s:120deg;animation:no 3.5s linear infinite;transform-origin:25px 25px}
+    .ni{--s:0deg;animation:nor 2.2s linear infinite;transform-origin:25px 25px}
+    .nd{animation:nf 5s ease-in-out infinite}
+    .cp{animation:cp 5s ease-in-out infinite;transform-origin:center}
+    .ch{animation:ch 5s ease-in-out infinite}
+    @media(prefers-reduced-motion:reduce){*{animation-duration:10s!important}}
+  </style>
+  <polygon class="hf" points="48,25 36.5,44.92 13.5,44.92 2,25 13.5,5.08 36.5,5.08"
+    stroke="#110FFF" stroke-width=".5" stroke-dasharray="4 6" opacity=".07" fill="none"/>
+  <circle class="ao" cx="25" cy="25" r="20" stroke="#110FFF" stroke-width="2.5"
+    stroke-linecap="round" stroke-dasharray="97.74 27.93" stroke-dashoffset="-13.96"/>
+  <circle class="am" cx="25" cy="25" r="14" stroke="#110FFF" stroke-width="2.5"
+    stroke-linecap="round" stroke-dasharray="68.42 19.55" stroke-dashoffset="-9.77"/>
+  <circle class="ai" cx="25" cy="25" r="8" stroke="#110FFF" stroke-width="2.5"
+    stroke-linecap="round" stroke-dasharray="39.10 11.17" stroke-dashoffset="-5.58"/>
+  <g class="no"><circle class="nd" cx="45" cy="25" r="1.6" fill="#110FFF"/></g>
+  <g class="nm"><circle class="nd" cx="39" cy="25" r="1.6" fill="#110FFF"/></g>
+  <g class="ni"><circle class="nd" cx="33" cy="25" r="1.6" fill="#110FFF"/></g>
+  <polygon class="ch" points="27,25 26,26.73 24,26.73 23,25 24,23.27 26,23.27" fill="#110FFF"/>
+  <circle class="cp" cx="25" cy="25" r="6" stroke="#110FFF" stroke-width=".8" fill="none"/>
+</svg>

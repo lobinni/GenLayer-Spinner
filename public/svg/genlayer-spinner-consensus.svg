@@ -1,0 +1,21 @@
+<!-- GenLayer Consensus Spinner
+     Three breathing arcs + adjudication dot
+     When arcs close = consensus reached
+     Color: Kinetic Cobalt #110FFF
+     
+     Usage: Drop into any HTML. No dependencies.
+-->
+<svg width="40" height="40" viewBox="0 0 50 50" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes cd{0%,100%{stroke-dasharray:10.47 31.42;stroke-dashoffset:0}50%{stroke-dasharray:38 3.89;stroke-dashoffset:-15}}
+    @keyframes cr{to{transform:rotate(360deg)}}
+    @keyframes dt{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.6;transform:scale(1.4)}}
+    .r{animation:cd 2.4s ease-in-out infinite,cr 3.6s linear infinite;transform-origin:center}
+    .d{animation:dt 2.4s ease-in-out infinite;transform-origin:center}
+    @media(prefers-reduced-motion:reduce){*{animation-duration:10s!important}}
+  </style>
+  <circle class="r" cx="25" cy="25" r="20" stroke="#110FFF" stroke-width="3"
+    stroke-linecap="round" stroke-dasharray="10.47 31.42"/>
+  <circle class="d" cx="25" cy="25" r="2.5" fill="#110FFF"/>
+</svg>

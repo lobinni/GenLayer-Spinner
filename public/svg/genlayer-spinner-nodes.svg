@@ -1,0 +1,29 @@
+<!-- GenLayer Validators Spinner
+     Five AI validator dots orbiting independently
+     Like Claude, GPT, Gemini, Llama, Mistral computing asynchronously
+     Color: Kinetic Cobalt #110FFF
+     
+     Usage: Drop into any HTML. No dependencies.
+-->
+<svg width="40" height="40" viewBox="0 0 50 50" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes o{from{transform:rotate(var(--s))}to{transform:rotate(calc(var(--s)+360deg))}}
+    @keyframes c{0%,100%{opacity:.2}50%{opacity:.5}}
+    .d1{--s:0deg;animation:o 2.4s cubic-bezier(.4,0,.2,1) infinite;transform-origin:25px 25px}
+    .d2{--s:72deg;animation:o 2s cubic-bezier(.4,0,.2,1) infinite;transform-origin:25px 25px}
+    .d3{--s:144deg;animation:o 2.8s cubic-bezier(.4,0,.2,1) infinite;transform-origin:25px 25px}
+    .d4{--s:216deg;animation:o 1.7s cubic-bezier(.4,0,.2,1) infinite;transform-origin:25px 25px}
+    .d5{--s:288deg;animation:o 3.2s cubic-bezier(.4,0,.2,1) infinite;transform-origin:25px 25px}
+    .c{animation:c 3s ease-in-out infinite}
+    .t{filter:drop-shadow(2px 0 3px rgba(17,15,255,.35))}
+    @media(prefers-reduced-motion:reduce){*{animation-duration:10s!important}}
+  </style>
+  <circle cx="25" cy="25" r="16" stroke="#110FFF" stroke-width=".4" opacity=".08"/>
+  <g class="d1"><circle class="t" cx="41" cy="25" r="2" fill="#110FFF" opacity=".8"/></g>
+  <g class="d2"><circle class="t" cx="41" cy="25" r="2" fill="#110FFF" opacity=".65"/></g>
+  <g class="d3"><circle class="t" cx="41" cy="25" r="2" fill="#110FFF" opacity=".8"/></g>
+  <g class="d4"><circle class="t" cx="41" cy="25" r="2" fill="#110FFF" opacity=".65"/></g>
+  <g class="d5"><circle class="t" cx="41" cy="25" r="2" fill="#110FFF" opacity=".8"/></g>
+  <polygon class="c" points="27.5,25 26.25,27.17 23.75,27.17 22.5,25 23.75,22.83 26.25,22.83" fill="#110FFF"/>
+</svg>
